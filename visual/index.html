@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Evidence Broker Visual Dashboard</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="topbar">
+        <div>
+          <p class="eyebrow">Evidence Broker</p>
+          <h1>Credential flow, approvals, and tamper-evident evidence</h1>
+        </div>
+        <div class="status-pill" id="statusPill">Ready</div>
+      </section>
+
+      <section class="workspace">
+        <aside class="timeline" aria-label="Broker flow steps">
+          <button class="step-button active" data-step="0">1. Discover</button>
+          <button class="step-button" data-step="1">2. Deny bad host</button>
+          <button class="step-button" data-step="2">3. Ask operator</button>
+          <button class="step-button" data-step="3">4. Send approved</button>
+          <button class="step-button" data-step="4">5. Reject replay</button>
+          <button class="step-button" data-step="5">6. Verify ledger</button>
+        </aside>
+
+        <section class="stage" aria-live="polite">
+          <div class="actors">
+            <article class="actor agent">
+              <span class="icon">A</span>
+              <h2>Agent</h2>
+              <p id="agentText"></p>
+            </article>
+            <article class="actor broker">
+              <span class="icon">B</span>
+              <h2>Broker</h2>
+              <p id="brokerText"></p>
+            </article>
+            <article class="actor operator">
+              <span class="icon">O</span>
+              <h2>Operator</h2>
+              <p id="operatorText"></p>
+            </article>
+            <article class="actor target">
+              <span class="icon">T</span>
+              <h2>Target API</h2>
+              <p id="targetText"></p>
+            </article>
+          </div>
+
+          <div class="flow" aria-hidden="true">
+            <div class="rail"></div>
+            <div class="packet" id="packet"></div>
+          </div>
+
+          <section class="panels">
+            <article class="panel">
+              <h3>Decision</h3>
+              <pre id="decisionBox"></pre>
+            </article>
+            <article class="panel">
+              <h3>Agent View</h3>
+              <pre id="agentBox"></pre>
+            </article>
+            <article class="panel ledger">
+              <h3>Evidence Ledger</h3>
+              <div id="ledgerRows"></div>
+            </article>
+          </section>
+        </section>
+      </section>
+    </main>
+    <script src="./main.js"></script>
+  </body>
+</html>
